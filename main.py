@@ -69,14 +69,12 @@ def handle(msg):
     elif(msg["text"] == "/regione"):
         keyboard = ReplyKeyboardMarkup(keyboard=[['Abruzzo', 'Basilicata'], ['Calabria', 'Campania'], ['Emilia Romagna','Friuli Venezia Giulia'], ['Lazio', 'Liguria'], ['Lombardia', 'Marche'],['Molise', 'Piemonte'], ['Puglia', 'Sardegna'], ['Sicilia','Toscana'], ['Umbria', 'Valle d\'Aosta'], ['Veneto']])
         bot.sendMessage(chat_id, 'Scegli la regione di cui vuoi avere informazioni:', reply_markup=keyboard)
-    elif(str(msg["text"]) in regioni.values()):
+    elif(msg["text"] in regioni.keys()):
         url2 = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json"
         res2 = urllib.urlopen(url2)
         dataReg = json.loads(res2.read())
-        bot.sendMessage(chat_id,"Test")
         #nome regione
         nome = dataReg[regioni.get(msg["text"])]["denominazione_regione"]
-        bot.sendMessage(chat_id,str(nome))
         #ricoverati con sintomi
         ricoverati =  str(dataReg[regioni.get(msg["text"])]["ricoverati_con_sintomi"])
         #terapia intensiva
