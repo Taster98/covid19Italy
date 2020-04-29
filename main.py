@@ -36,15 +36,16 @@ def handle(msg):
     url = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale-latest.json"
     res = urllib.urlopen(url)
     data = json.loads(res.read())
+    #data ultimo aggiornamento
+    aggiornamento = data[0]["data"]
+    upd = str(aggiornamento)[:10]
+    upd = time.strptime(upd,"%Y-%m-%d")
+    dataFin = str(upd.tm_mday) + "-"+str(upd.tm_mon) + "-" + str(upd.tm_year)
     content_type, chat_type, chat_id = telepot.glance(msg)
     if(msg["text"] == "/help"):
         bot.sendMessage(chat_id,"Benvenuto su Covid19ITBot!\n\nQuesto bot serve per ottenere le ultime news riguardanti il covid-19 in Italia.\n\nPer usarlo, seleziona uno dei comandi:\n\n'/generale' -> mostra la situazione del covid generale in tutta italia\n'/covid' -> mostra dettagli sul covid")
     elif(msg["text"] == "/generale"):
-        #data ultimo aggiornamento
-        aggiornamento = data[0]["data"]
-        upd = str(aggiornamento)[:10]
-        upd = time.strptime(upd,"%Y-%m-%d")
-        dataFin = str(upd.tm_mday) + "-"+str(upd.tm_mon) + "-" + str(upd.tm_year)
+        
         #totale dei positivi
         totale_positivi = str(data[0]["totale_positivi"])
         #totale nuovi positivi
