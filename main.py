@@ -8,8 +8,7 @@ import time
 import telepot
 from telepot.loop import MessageLoop
 import cfg.config
-import telegram
-from telegram import ReplyKeyboardMarkup
+from telepot.namedtuple import ReplyKeyboardMarkup, KeyboardButton
 
 def handle(msg):
     url = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale-latest.json"
