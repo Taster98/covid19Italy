@@ -43,6 +43,9 @@ def handle(msg):
         bot.sendMessage(chat_id,messaggio)
     elif(msg["text"] == "/start"):
         bot.sendMessage(chat_id,"Benvenuto su Covid19ITBot!")
+    elif(msg["text"] == "/regione"):
+        keyboard = ReplyKeyboardMarkup(keyboard=[['Add', 'List'], ['Settings', 'Web']])
+        bot.sendMessage(chat_id, 'Some text ...', reply_markup=keyboard)
 
         
 
