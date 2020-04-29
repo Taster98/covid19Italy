@@ -1,0 +1,4 @@
+*.pyc
+/cfg/*
+cfg/*
+config.py
