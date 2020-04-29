@@ -43,7 +43,7 @@ def handle(msg):
     dataFin = str(upd.tm_mday) + "-"+str(upd.tm_mon) + "-" + str(upd.tm_year)
     content_type, chat_type, chat_id = telepot.glance(msg)
     if(msg["text"] == "Help"):
-        bot.sendMessage(chat_id,"Benvenuto su Covid19ITBot!\n\nQuesto bot serve per ottenere le ultime news riguardanti il covid-19 in Italia.\n\nPer usarlo, seleziona uno dei comandi:\n\n'/generale' -> mostra la situazione del covid generale in tutta italia\n'/covid' -> mostra dettagli sul covid")
+        bot.sendMessage(chat_id,"Benvenuto su Covid19ITBot!\n\nQuesto bot serve per ottenere le ultime news riguardanti il covid-19 in Italia.\n\nPer usarlo, seleziona uno dei comandi:\n\n'Situazione generale' -> mostra la situazione del covid generale in tutta italia\n'Informazioni Covid-19' -> mostra dettagli sul covid-19\nRegione -> dettagli per regione selezionata")
     elif(msg["text"] == "Situazione generale"):
         
         #totale dei positivi
