@@ -10,3 +10,4 @@ To interact with the bot, you will have to search in the Telegram search bar for
 
 * "/help" --> Gives you information about the bot.
 * "/generale" --> Gives you general information about Covid-19 situation in Italy.
+* "/covid" --> Gives information about Covid-19 symphtoms and brief description of the disease.
