@@ -73,8 +73,10 @@ def handle(msg):
         url2 = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json"
         res2 = urllib.urlopen(url2)
         dataReg = json.loads(res2.read())
+        bot.sendMessage(chat_id,"Test")
         #nome regione
         nome = dataReg[regioni.get(msg["text"])]["denominazione_regione"]
+        bot.sendMessage(chat_id,str(nome))
         #ricoverati con sintomi
         ricoverati =  str(dataReg[regioni.get(msg["text"])]["ricoverati_con_sintomi"])
         #terapia intensiva
