@@ -42,7 +42,6 @@ def handle(msg):
     upd = time.strptime(upd,"%Y-%m-%d")
     dataFin = str(upd.tm_mday) + "-"+str(upd.tm_mon) + "-" + str(upd.tm_year)
     content_type, chat_type, chat_id = telepot.glance(msg)
-    keyboard = ReplyKeyboardMarkup(keyboard=[['Situazione generale'],['Informazioni Covid-19'],['Help'],['Abruzzo', 'Basilicata'], ['Calabria', 'Campania'], ['Emilia Romagna','Friuli Venezia Giulia'], ['Lazio', 'Liguria'], ['Lombardia', 'Marche'],['Molise', 'Piemonte'], ['Puglia', 'Sardegna'], ['Sicilia','Toscana'], ['Umbria', 'Valle d\'Aosta'], ['Veneto']])
     if(msg["text"] == "Help"):
         bot.sendMessage(chat_id,"Benvenuto su Covid19ITBot!\n\nQuesto bot serve per ottenere le ultime news riguardanti il covid-19 in Italia.\n\nPer usarlo, seleziona uno dei comandi:\n\n'/generale' -> mostra la situazione del covid generale in tutta italia\n'/covid' -> mostra dettagli sul covid")
     elif(msg["text"] == "Situazione generale"):
@@ -68,6 +67,7 @@ def handle(msg):
         bot.sendMessage(chat_id,messaggio)
     elif(msg["text"] == "/start"):
         bot.sendMessage(chat_id,"Benvenuto su Covid19ITBot!")
+        keyboard = ReplyKeyboardMarkup(keyboard=[['Situazione generale'],['Informazioni Covid-19'],['Help'],['Abruzzo', 'Basilicata'], ['Calabria', 'Campania'], ['Emilia Romagna','Friuli Venezia Giulia'], ['Lazio', 'Liguria'], ['Lombardia', 'Marche'],['Molise', 'Piemonte'], ['Puglia', 'Sardegna'], ['Sicilia','Toscana'], ['Umbria', 'Valle d\'Aosta'], ['Veneto']])
     elif(msg["text"] in regioni.keys()):
         url2 = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json"
         res2 = urllib.urlopen(url2)
