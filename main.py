@@ -13,23 +13,23 @@ from telepot.namedtuple import ReplyKeyboardMarkup, KeyboardButton
 regioni = {
     "Abruzzo" :0,
     "Basilicata" :1,
-    "Calabria":2,
-    "Campania":3,
-    "Emilia Romagna":4,
-    "Friuli Venezia Giulia":5,
-    "Lazio":6,
-    "Liguria":7,
-    "Lombardia":8,
-    "Marche":9,
-    "Molise":10,
-    "Piemonte":11,
-    "Puglia":12,
-    "Sardegna":13,
-    "Sicilia":14,
-    "Toscana":15,
-    "Umbria":16,
-    "Valle d\'Aosta":17,
-    "Veneto":18
+    "Calabria":3,
+    "Campania":4,
+    "Emilia Romagna":5,
+    "Friuli Venezia Giulia":6,
+    "Lazio":7,
+    "Liguria":8,
+    "Lombardia":9,
+    "Marche":10,
+    "Molise":11,
+    "Piemonte":12,
+    "Puglia":13,
+    "Sardegna":14,
+    "Sicilia":15,
+    "Toscana":16,
+    "Umbria":18,
+    "Valle d\'Aosta":19,
+    "Veneto":20
 }
 
 def handle(msg):
@@ -42,9 +42,10 @@ def handle(msg):
     upd = time.strptime(upd,"%Y-%m-%d")
     dataFin = str(upd.tm_mday) + "-"+str(upd.tm_mon) + "-" + str(upd.tm_year)
     content_type, chat_type, chat_id = telepot.glance(msg)
-    if(msg["text"] == "/help"):
+    keyboard = ReplyKeyboardMarkup(keyboard=[['Situazione generale'],['Informazioni Covid-19'],['Help'],['Abruzzo', 'Basilicata'], ['Calabria', 'Campania'], ['Emilia Romagna','Friuli Venezia Giulia'], ['Lazio', 'Liguria'], ['Lombardia', 'Marche'],['Molise', 'Piemonte'], ['Puglia', 'Sardegna'], ['Sicilia','Toscana'], ['Umbria', 'Valle d\'Aosta'], ['Veneto']])
+    if(msg["text"] == "Help"):
         bot.sendMessage(chat_id,"Benvenuto su Covid19ITBot!\n\nQuesto bot serve per ottenere le ultime news riguardanti il covid-19 in Italia.\n\nPer usarlo, seleziona uno dei comandi:\n\n'/generale' -> mostra la situazione del covid generale in tutta italia\n'/covid' -> mostra dettagli sul covid")
-    elif(msg["text"] == "/generale"):
+    elif(msg["text"] == "Situazione generale"):
         
         #totale dei positivi
         totale_positivi = str(data[0]["totale_positivi"])
@@ -62,14 +63,11 @@ def handle(msg):
         ospedalizzati = str(data[0]["totale_ospedalizzati"])
         messaggio = "COVID-19 SITUAZIONE DEL "+dataFin+"\n\nI casi in totale sono: "+totale_positivi+"\nI nuovi casi di oggi sono: "+nuovi_positivi+"\nLa differenza tra ieri e oggi di nuovi casi è: "+variazione_totale_positivi+"\nI morti totali sono: "+deceduti+"\nI dimessi guariti totali sono: "+dimessi_guariti+"\nIl totale di ospedalizzati è: "+ospedalizzati+"\nIl totale di tamponi effettuati è: "+tamponi+"\nPer ulteriori informazioni, visita: http://www.protezionecivile.it/attivita-rischi/rischio-sanitario/emergenze/coronavirus \n\nSE HAI SINTOMI SIMIL-INFLUENZALI RESTA A CASA, E CHIAMA IL 1500.\n\n\n#restaacasa\n\n\n"
         bot.sendMessage(chat_id,messaggio)
-    elif(msg["text"] == "/covid"):
+    elif(msg["text"] == "Informazioni Covid-19"):
         messaggio = "Le persone che hanno contratto il virus potrebbero manifestare i sintomi dopo 1-14 giorni. I sintomi più comuni della malattia da coronavirus (COVID-19) sono febbre, stanchezza e tosse secca. La maggior parte delle persone (circa l'80%) guarisce dalla malattia senza aver bisogno di cure particolari.\nPiù raramente, la malattia può essere grave e portare persino al decesso. Gli anziani e le persone con altre patologie (ad esempio asma, diabete o cardiopatia) potrebbero essere più vulnerabili e quindi ammalarsi gravemente.\n\nSintomi riscontrabili:\n-tosse\n-febbre\n-stanchezza\n-difficoltà respiratorie (casi gravi).\n\nPer maggiori informazioni, visita il sito: http://www.salute.gov.it/portale/nuovocoronavirus/dettaglioFaqNuovoCoronavirus.jsp?id=228&lingua=italiano \n\n\n#restaacasa\n\n"
         bot.sendMessage(chat_id,messaggio)
     elif(msg["text"] == "/start"):
         bot.sendMessage(chat_id,"Benvenuto su Covid19ITBot!")
-    elif(msg["text"] == "/regione"):
-        keyboard = ReplyKeyboardMarkup(keyboard=[['Abruzzo', 'Basilicata'], ['Calabria', 'Campania'], ['Emilia Romagna','Friuli Venezia Giulia'], ['Lazio', 'Liguria'], ['Lombardia', 'Marche'],['Molise', 'Piemonte'], ['Puglia', 'Sardegna'], ['Sicilia','Toscana'], ['Umbria', 'Valle d\'Aosta'], ['Veneto']])
-        bot.sendMessage(chat_id, 'Scegli la regione di cui vuoi avere informazioni:', reply_markup=keyboard)
     elif(msg["text"] in regioni.keys()):
         url2 = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json"
         res2 = urllib.urlopen(url2)
