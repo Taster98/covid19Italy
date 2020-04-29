@@ -8,4 +8,5 @@ This is a simple bot which give real-time updated information about Covid-19 cas
 
 To interact with the bot, you will have to search in the Telegram search bar for "Covid19IT" and select the bot. Then, you will have to start it and, byt ticking the "/" button on the message bar, you can see the selection of commands you can choose.
 
-* "/help" --> Gives you information about the bot
+* "/help" --> Gives you information about the bot.
+* "/generale" --> Gives you general information about Covid-19 situation in Italy.
