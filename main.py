@@ -10,27 +10,27 @@ from telepot.loop import MessageLoop
 import cfg.config
 from telepot.namedtuple import ReplyKeyboardMarkup, KeyboardButton
 
-regioni = [
-    "Abruzzo",
-    "Basilicata",
-    "Calabria",
-    "Campania",
-    "Emilia Romagna",
-    "Friuli Venezia Giulia",
-    "Lazio",
-    "Liguria",
-    "Lombardia",
-    "Marche",
-    "Molise",
-    "Piemonte",
-    "Puglia",
-    "Sardegna",
-    "Sicilia",
-    "Toscana",
-    "Umbria",
-    "Valle d\'Aosta",
-    "Veneto"
-]
+regioni = {
+    "Abruzzo" :0,
+    "Basilicata" :1,
+    "Calabria":2,
+    "Campania":3,
+    "Emilia Romagna":4,
+    "Friuli Venezia Giulia":5,
+    "Lazio":6,
+    "Liguria":7,
+    "Lombardia":8,
+    "Marche":9,
+    "Molise":10,
+    "Piemonte":11,
+    "Puglia":12,
+    "Sardegna":13,
+    "Sicilia":14,
+    "Toscana":15,
+    "Umbria":16,
+    "Valle d\'Aosta":17,
+    "Veneto":18
+}
 
 def handle(msg):
     url = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale-latest.json"
@@ -69,26 +69,26 @@ def handle(msg):
     elif(msg["text"] == "/regione"):
         keyboard = ReplyKeyboardMarkup(keyboard=[['Abruzzo', 'Basilicata'], ['Calabria', 'Campania'], ['Emilia Romagna','Friuli Venezia Giulia'], ['Lazio', 'Liguria'], ['Lombardia', 'Marche'],['Molise', 'Piemonte'], ['Puglia', 'Sardegna'], ['Sicilia','Toscana'], ['Umbria', 'Valle d\'Aosta'], ['Veneto']])
         bot.sendMessage(chat_id, 'Scegli la regione di cui vuoi avere informazioni:', reply_markup=keyboard)
-    elif(str(msg["text"]) in regioni):
+    elif(str(msg["text"]) in regioni.values()):
         url2 = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json"
         res2 = urllib.urlopen(url2)
         dataReg = json.loads(res2.read())
         #nome regione
-        nome = dataReg[regioni.index[str(msg["text"])]]["denominazione_regione"]
+        nome = dataReg[regioni.get(msg["text"])]["denominazione_regione"]
         #ricoverati con sintomi
-        ricoverati =  str(dataReg[regioni.index[msg["text"]]]["ricoverati_con_sintomi"])
+        ricoverati =  str(dataReg[regioni.get(msg["text"])]["ricoverati_con_sintomi"])
         #terapia intensiva
-        terapia = str(dataReg[regioni.index[msg["text"]]]["terapia_intensiva"])
+        terapia = str(dataReg[regioni.get(msg["text"])]["terapia_intensiva"])
         #totale ospedalizzati
-        ospedalizzati = str(dataReg[regioni.index[msg["text"]]]["totale_ospedalizzati"])
+        ospedalizzati = str(dataReg[regioni.get(msg["text"])]["totale_ospedalizzati"])
         #totale positivi
-        tot_pos = str(dataReg[regioni.index[msg["text"]]]["totale_positivi"])
+        tot_pos = str(dataReg[regioni.get(msg["text"])]["totale_positivi"])
         #nuovi positivi
-        nuovi_pos = str(dataReg[regioni.index[msg["text"]]]["nuovi_positivi"])
+        nuovi_pos = str(dataReg[regioni.get(msg["text"])]["nuovi_positivi"])
         #deceduti 
-        deceduti = str(dataReg[regioni.index[msg["text"]]]["deceduti"])
+        deceduti = str(dataReg[regioni.get(msg["text"])]["deceduti"])
         #tamponi
-        tamponi = str(dataReg[regioni.index[msg["text"]]]["tamponi"])
+        tamponi = str(dataReg[regioni.get(msg["text"])]["tamponi"])
         messaggio = "COVID-19 SITUAZIONE DEL "+dataFin+": "+str(nome)+"\n\nI casi in totale sono: "+tot_pos+"\nI nuovi casi di oggi sono: "+nuovi_pos+"\nIl totale degli ospedalizzati è: "+ospedalizzati+"\nI morti totali sono: "+deceduti+"\nI ricoverati con sintomi sono: "+ricoverati+"\nIl totale di pazienti in terapia è: "+terapia+"\nIl totale di tamponi effettuati è: "+tamponi+"\nPer ulteriori informazioni, visita: http://www.protezionecivile.it/attivita-rischi/rischio-sanitario/emergenze/coronavirus \n\nSE HAI SINTOMI SIMIL-INFLUENZALI RESTA A CASA, E CHIAMA IL 1500.\n\n\n#restaacasa\n\n\n"
         bot.sendMessage(chat_id,messaggio)
         
