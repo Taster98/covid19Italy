@@ -69,7 +69,7 @@ def handle(msg):
         keyboard = ReplyKeyboardMarkup(keyboard=[['Situazione generale'],['Informazioni Covid-19'],['Help'],['Abruzzo', 'Basilicata'], ['Calabria', 'Campania'], ['Emilia Romagna','Friuli Venezia Giulia'], ['Lazio', 'Liguria'], ['Lombardia', 'Marche'],['Molise', 'Piemonte'], ['Puglia', 'Sardegna'], ['Sicilia','Toscana'], ['Umbria', 'Valle d\'Aosta'], ['Veneto']])
         bot.sendMessage(chat_id,"Benvenuto su Covid19ITBot!",reply_markup=keyboard)
     elif(msg["text"] in regioni.keys()):
-        url2 = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json"
+        url2 = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni-latest.json"
         res2 = urllib.urlopen(url2)
         dataReg = json.loads(res2.read())
         #nome regione
