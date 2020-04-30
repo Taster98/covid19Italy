@@ -12,3 +12,8 @@ To interact with the bot, you will have to search in the Telegram search bar for
 * "Informazioni Covid-19" --> Gives information about Covid-19 symphtoms and brief description of the disease.
 * "Help" --> Gives you information about the bot.
 * "[Regione] --> Gives information for the Region selected.
+
+#### Developed by Luigi Gesuele
+#### API telepot --> [Telepot for Telegram bot](https://telepot.readthedocs.io/en/latest/)
+#### Dataset --> [Dipartimento protezione civile](https://github.com/pcm-dpc/COVID-19)
+#### E-mail --> luigi.gesuele98[at]gmail[.]it
