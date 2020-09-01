@@ -22,14 +22,16 @@ regioni = {
     "Lombardia":8,
     "Marche":9,
     "Molise":10,
-    "Piemonte":11,
-    "Puglia":12,
-    "Sardegna":13,
-    "Sicilia":14,
-    "Toscana":15,
-    "Umbria":16,
-    "Valle d\'Aosta":17,
-    "Veneto":18
+    "P.A. Bolzano":11,
+    "P.A. Trento":12,
+    "Piemonte":13,
+    "Puglia":14,
+    "Sardegna":15,
+    "Sicilia":16,
+    "Toscana":17,
+    "Umbria":18,
+    "Valle d\'Aosta":19,
+    "Veneto":20
 }
 
 def handle(msg):
@@ -66,7 +68,7 @@ def handle(msg):
         messaggio = "Le persone che hanno contratto il virus potrebbero manifestare i sintomi dopo 1-14 giorni. I sintomi più comuni della malattia da coronavirus (COVID-19) sono febbre, stanchezza e tosse secca. La maggior parte delle persone (circa l'80%) guarisce dalla malattia senza aver bisogno di cure particolari.\nPiù raramente, la malattia può essere grave e portare persino al decesso. Gli anziani e le persone con altre patologie (ad esempio asma, diabete o cardiopatia) potrebbero essere più vulnerabili e quindi ammalarsi gravemente.\n\nSintomi riscontrabili:\n-tosse\n-febbre\n-stanchezza\n-difficoltà respiratorie (casi gravi).\n\nPer maggiori informazioni, visita il sito: http://www.salute.gov.it/portale/nuovocoronavirus/dettaglioFaqNuovoCoronavirus.jsp?id=228&lingua=italiano \n\n\n#restaacasa\n\n"
         bot.sendMessage(chat_id,messaggio)
     elif(msg["text"] == "/start"):
-        keyboard = ReplyKeyboardMarkup(keyboard=[['Situazione generale'],['Informazioni Covid-19'],['Help'],['Abruzzo', 'Basilicata'], ['Calabria', 'Campania'], ['Emilia Romagna','Friuli Venezia Giulia'], ['Lazio', 'Liguria'], ['Lombardia', 'Marche'],['Molise', 'Piemonte'], ['Puglia', 'Sardegna'], ['Sicilia','Toscana'], ['Umbria', 'Valle d\'Aosta'], ['Veneto']])
+        keyboard = ReplyKeyboardMarkup(keyboard=[['Situazione generale'],['Informazioni Covid-19'],['Help'],['Abruzzo', 'Basilicata'], ['Calabria', 'Campania'], ['Emilia Romagna','Friuli Venezia Giulia'], ['Lazio', 'Liguria'], ['Lombardia', 'Marche'],['Molise','P.A. Bolzano'],['P.A. Trento','Piemonte'], ['Puglia', 'Sardegna'], ['Sicilia','Toscana'], ['Umbria', 'Valle d\'Aosta'], ['Veneto']])
         bot.sendMessage(chat_id,"Benvenuto su Covid19ITBot!",reply_markup=keyboard)
     elif(msg["text"] in regioni.keys()):
         url2 = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni-latest.json"
